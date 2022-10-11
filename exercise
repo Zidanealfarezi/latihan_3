@@ -1,56 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <style>
-    body{
-      text-align: center;
-    }
-
-    img{
-      height: 500px;
-      width: 400px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Punny web</h1>
-  <p id="author"></p>
-  <img src="" alt="" id="gambar"  >
-<script>
-
-let show = function(data){
-  let arr = JSON.parse(data);
-  arr = arr[0];
-  document.getElementById("gambar").src = arr.download_url;
-  document.getElementById("author").innerHTML = arr.author;
-}
-
-let load = function(){
-  let link = "https://picsum.photos/v2/list?page=2&limit=1";
-  let xhr;
-  xhr = new XMLHttpRequest();
-  try{
-    xhr = new XMLHttpRequest();
-    if (!xhr)return -1;
-
-    xhr.onreadystatechange = function(){
-      if (xhr.readyState === 4 && xhr.status === 200){
-        show(xhr.responseText);
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        text-align: center;
+        background-color: #e34bfa;
       }
-    };
-    xhr.open('GET', link);
-    xhr.send();
-  }
-    catch (e){
-    console.log(e)
-   
-   }
-}
-load();
-</script>
-</body>
+      #gambar {
+        width: 400px;
+        padding-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Punny web</h1>
+    <p id="author"></p>
+    <img src="" alt="" id="gambar" />
+    <script>
+      let show = function (data) {
+        let arr = JSON.parse(data);
+        arr = arr[0];
+        document.getElementById("gambar").src = arr.download_url;
+        document.getElementById("author").innerHTML = arr.author;
+      };
+
+      let load = function () {
+        let link = "https://picsum.photos/v2/list?page=2&limit=1";
+        let xhr;
+        xhr = new XMLHttpRequest();
+        try {
+          xhr = new XMLHttpRequest();
+          if (!xhr) return -1;
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              show(xhr.responseText);
+            }
+          };
+          xhr.open("GET", link);
+          xhr.send();
+        } catch (e) {
+          console.log(e);
+        }
+      };
+      load();
+    </script>
+  </body>
 </html>
